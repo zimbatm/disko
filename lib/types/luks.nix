@@ -91,7 +91,8 @@ in
         cryptsetup luksOpen ${config.device} ${config.name} \
           ${toString config.extraOpenArgs} \
           ${keyFileArgs}
-        ${lib.optionalString (config.keyFile != null) toString (lib.lists.forEach config.additionalKeyFiles (x: "cryptsetup luksAddKey ${config.device} --key-file ${config.keyFile} ${x};"))}
+          ${lib.optionalString (config.keyFile != null) "--key-file ${config.keyFile}"}
+        ${toString (lib.lists.forEach config.additionalKeyFiles (x: "cryptsetup luksAddKey ${config.device} ${lib.optionalString (config.keyFile != null) "--key-file ${config.keyFile}"} ${x};"))}
         ${lib.optionalString (config.content != null) config.content._create}
       '';
     };
