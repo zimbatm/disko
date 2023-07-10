@@ -31,7 +31,7 @@
               content = {
                 type = "luks";
                 name = "crypted1";
-                keyFile = "/tmp/secret.key";
+                settings.keyFile = "/tmp/secret.key";
                 extraFormatArgs = [
                   "--iter-time 1"
                 ];
@@ -56,7 +56,7 @@
               content = {
                 type = "luks";
                 name = "crypted2";
-                keyFile = "/tmp/secret.key";
+                settings.keyFile = "/tmp/secret.key";
                 extraFormatArgs = [
                   "--iter-time 1"
                 ];
